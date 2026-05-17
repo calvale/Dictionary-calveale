@@ -279,34 +279,114 @@ std::string query_pronunciation(std::string word) {
 }
 
 
-
-
 /* END OF TEMPLATE CODE */
 
-// TODO Your code goes below this comment.
+/*
+ * Name: Aleena Calvert
+ * Assignment: Dictionary
+ * Description: This program lets the user look up a word's definition,
+ * audio URL, or pronunciation using the dictionary API starter functions.
+ */
 
-int main() {
-	// Commented below are examples of how to use the provided template
-	// functions to get definitions, audio URLs, and pronunciation of a given
-	// word string. Uncomment them to try them out. Note that not all words have
-	// definitions, audio URLs, or pronunciations available through the free
-	// API that the template code uses. In such a case, the returned string will
-	// be empty (i.e., blank). Your program should handle this as described
-	// in the assignment document.
-	
-	// Definition example:
-	// std::string definition = query_definition("what");
-	// std::cout << "Definition of 'what': " << definition << std::endl;
+#include <sstream>
+#include <iostream>
 
-	// Audio sample URL example:
-	// std::string audio_url = query_audio_url("hello");
-	// std::cout << "Audio URL for 'hello': " << audio_url << std::endl;
+/*
+ * Function: print_menu
+ * Description: Prints the dictionary menu options.
+ * Parameters: None
+ * Returns: Nothing
+ */
 
-	// Pronunciation example:
-	// std::string pronunciation = query_pronunciation("mischievous");
-	// std::cout << "Pronunciation of 'mischievous': "
-	// 	<< pronunciation << std::endl;
+void print_menu()
+{
+    std::cout << std::endl;
+    std::cout << "Dictionary Menu" << std::endl;
+    std::cout << "1. Look up definition" << std::endl;
+    std::cout << "2. Look up audio URL" << std::endl;
+    std::cout << "3. Look up pronunciation" << std::endl;
+    std::cout << "4. Exit" << std::endl;
+    std::cout << "Enter your choice: ";
+}
 
-	// TODO Your program starts here. Of course, you should write other
-	// functions as well.
+/*
+ * Function: get_word
+ * Description: Prompts the user for a word.
+ * Parameters: None
+ * Returns: The word entered by the user.
+ */
+std::string get_word()
+{
+    std::string word;
+
+    std::cout << "Enter a word: ";
+    std::cin >> word;
+
+    return word;
+}
+
+/*
+ * Function: print_answer
+ * Description: Prints the result or an error message if nothing was found.
+ * Parameters:
+ *      answer: The information returned from the query function.
+ *      label: The type of information being printed.
+ * Returns: Nothing
+ */
+void print_answer(std::string answer, std::string label)
+{
+    if (answer == "") {
+        std::cout << "I could not find that information." << std::endl;
+    } else {
+        std::cout << label << ": " << answer << std::endl;
+    }
+}
+
+int main()
+{
+    std::string choice;
+    std::string word;
+    std::string answer;
+
+    while (choice != "4") {
+
+        print_menu();
+        std::cin >> choice;
+
+        if (choice == "1") {
+
+            word = get_word();
+
+            answer = query_definition(word);
+
+            print_answer(answer, "Definition");
+
+        } else if (choice == "2") {
+
+            word = get_word();
+
+            answer = query_audio_url(word);
+
+            print_answer(answer, "Audio URL");
+
+        } else if (choice == "3") {
+
+            word = get_word();
+
+            answer = query_pronunciation(word);
+
+            print_answer(answer, "Pronunciation");
+
+        } else if (choice == "4") {
+
+            std::cout << "Goodbye!" << std::endl;
+
+        } else {
+
+            std::cout << "That is not a valid choice. Try again." << std::endl;
+
+        }
+    }
+
+    return 0;
 }
