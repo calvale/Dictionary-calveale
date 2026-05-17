@@ -1,0 +1,5 @@
+Two things the AI did well were making the menu easy to read and using a loop so the program keeps running until the user exits. It also organized the code using a helper function called displayMenu(), which made the program easier to follow.
+
+Two possible problems were that the AI used int for the menu choice even though the assignment directions say to store user input as a string. Another problem was that it used the function name query_audio(), but the actual starter code uses query_audio_url(), so the code would not compile without fixing it.
+
+I would not fully trust the AI solution in a real project without testing it first. The AI gave useful ideas, but it also made mistakes and did not completely follow all of the assignment requirements.
